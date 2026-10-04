@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #112e47;
+  --color-navy-deep: #0b2136;
+  --color-teal-light: #7fc4cc;
+  --color-teal-soft: #d9eef0;
+  --color-paper: #f7fafb;
+  --color-mist: #e6f1f3;
+  --color-teal: #027482;
+  --color-teal-deep: #015f6b;
+  --color-ink: #12263a;
+  --color-muted: #46596b;
+  --color-whatsapp: #25d366;
+}
+
+@theme inline {
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+}
+
+/* Latin text inside Urdu pages (phone numbers, digits) and Urdu text inside English pages. */
+.font-latin {
+  font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif !important;
+}
+
+.font-latin-display {
+  font-family: var(--font-fraunces), ui-serif, Georgia, serif !important;
+}
+
+.font-urdu {
+  font-family: var(--font-nastaliq), "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", serif !important;
+  line-height: 2 !important;
+}
+
+/*
+ * Urdu pages. Nastaliq script is tall and its letters join, so it needs generous
+ * line height and no letter spacing. Latin characters fall back to the English font.
+ */
+html[lang="ur"] body,
+html[lang="ur"] .font-display,
+html[lang="ur"] .font-sans {
+  font-family: var(--font-nastaliq), "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", var(--font-jakarta), serif;
+}
+
+html[lang="ur"] body :where(*) {
+  letter-spacing: 0 !important;
+}
+
+html[lang="ur"] body :where(p, li, a, button, span, dd, dt, label, summary, address, input, select, textarea, option, strong, blockquote, figcaption) {
+  line-height: 2.1 !important;
+}
+
+html[lang="ur"] body :where(h1, h2, h3) {
+  line-height: 1.9 !important;
+}
+
+html[lang="ur"] body :where(.font-latin, .font-latin-display) {
+  line-height: 1.4 !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Keeps focused and anchored content clear of the sticky header. */
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-teal);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.on-dark :focus-visible {
+  outline-color: var(--color-paper);
+}
+
+/* Page transition: plays on every route change via app/template.tsx. */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.page-enter {
+  animation: page-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Hero headline: each word rises into place. */
+@keyframes word-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.word-rise {
+  display: inline-block;
+  animation: word-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Floating leaves and soft background shapes. Transform only. */
+@keyframes leaf-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--leaf-rotate, 0deg));
+  }
+  50% {
+    transform: translateY(-14px) rotate(calc(var(--leaf-rotate, 0deg) + 8deg));
+  }
+}
+
+.leaf-float {
+  animation: leaf-float 7s ease-in-out infinite;
+}
+
+/* Hero bottle: a slow rise and fall. */
+@keyframes gentle-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.gentle-bob {
+  animation: gentle-bob 6s ease-in-out infinite;
+}
+
+@keyframes blob-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(18px, -12px) scale(1.05);
+  }
+}
+
+.blob-drift {
+  animation: blob-drift 14s ease-in-out infinite;
+}
+
+/* FAQ accordion: answer fades in when its <details> opens. */
+@keyframes faq-open {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+details[open] > .faq-answer {
+  animation: faq-open 0.35s ease-out both;
+}
+
+details > summary {
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
