@@ -81,16 +81,22 @@ src/
   i18n.ts              Language list and URL helpers
 ```
 
-## Put it online with Vercel
+## Publishing changes
 
-1. Create a free account at https://vercel.com and a repository on GitHub.
-2. Push this folder to the GitHub repository.
-3. In Vercel choose **Add New → Project**, pick the repository, and press **Deploy**.
-   No settings need to change.
-4. Once you have your final web address (for example a custom domain), add an
-   environment variable in Vercel named `NEXT_PUBLIC_SITE_URL` with that address,
-   such as `https://www.example.com`, then redeploy. This keeps the sitemap and
-   search-engine data pointing at the right address.
+The site is hosted on Vercel and connected to this GitHub repository. Every change
+pushed to the `main` branch is built and published automatically within a minute or two:
+
+```bash
+git add -A
+git commit -m "Describe the change"
+git push
+```
+
+Live site: https://al-habib-homeo-clinic.vercel.app
+
+If you later use your own domain, add an environment variable in Vercel named
+`NEXT_PUBLIC_SITE_URL` with that address (for example `https://www.example.com`) and
+redeploy, so the sitemap and search-engine data point to the right address.
 
 ## After launch
 
