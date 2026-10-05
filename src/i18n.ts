@@ -8,6 +8,12 @@ export function isLocale(value: string): value is Locale {
 
 export const dirOf = (lang: Locale) => (lang === "ur" ? "rtl" : "ltr");
 
+/** The clinic logo for each language, with its pixel size. */
+export const logos: Record<Locale, { src: string; width: number; height: number }> = {
+  en: { src: "/logo.png", width: 493, height: 176 },
+  ur: { src: "/logo-ur.png", width: 475, height: 176 },
+};
+
 /** Turns a site path such as "/about" into the right URL for the language. */
 export function localePath(lang: Locale, path: string) {
   if (lang === "en") return path;

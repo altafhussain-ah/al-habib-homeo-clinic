@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { localePath, stripLocale, type Locale } from "@/i18n";
+import { localePath, logos, stripLocale, type Locale } from "@/i18n";
 import { btnPrimary, container } from "@/lib/styles";
 
 type Props = {
@@ -63,7 +63,7 @@ export function Header({ lang, name, nav, labels }: Props) {
     <header className="sticky top-0 z-40 border-b border-navy/10 bg-paper/90 backdrop-blur-md">
       <div className={`${container} flex h-18 items-center justify-between gap-3`}>
         <Link href={home} onClick={() => setOpen(false)} className="flex min-h-12 shrink-0 items-center">
-          <Image src="/logo.png" alt={name} width={493} height={176} preload className="h-11 w-auto sm:h-12" />
+          <Image {...logos[lang]} alt={name} preload className="h-11 w-auto sm:h-12" />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { telLink, whatsappLink } from "@/data/clinic";
 import type { Content } from "@/data/content";
-import { fill } from "@/i18n";
+import { fill, logos } from "@/i18n";
 import { container } from "@/lib/styles";
 import { WhatsAppIcon } from "./icons";
 
@@ -16,7 +16,7 @@ export function Footer({ c }: { c: Content }) {
         <div>
           {/* The logo has dark lettering, so it sits on a light plate against the dark footer. */}
           <span className="inline-block rounded-2xl bg-paper px-4 py-3">
-            <Image src="/logo.png" alt={c.name} width={493} height={176} className="h-12 w-auto" />
+            <Image {...logos[c.lang]} alt={c.name} className="h-12 w-auto" />
           </span>
           <p className="mt-4 max-w-sm leading-relaxed text-paper/80">{fill(c.t.footer.about, { area: c.area, city: c.city })}</p>
         </div>
